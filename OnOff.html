@@ -1,0 +1,32 @@
+<!DOCTYPE htlm>
+<html>
+<body>
+	<button onclick="turnOn()">On</button>
+	</br>
+	<button onclick="turnOff()">Off</button>
+	<script>
+		var password = "Chateaulan!";
+		var userName = "admin";
+		var URL = "https://192.168.0.24/dbbroker";
+		
+		function turnOff() {
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+    			if (xhttp.readyState == 4 && xhttp.status == 200) {
+       				// Action to be performed when the document is read;
+    			}
+			};
+			xhttp.open("GET", URL, true, userName, password);
+			xhttp.setRequestHeader("Content-Type:", "application/x-www-form-urlencoded");
+			xhttp.setRequestHeader("X-Requested-With:", "XMLHttpRequest");
+			xhttp.send("<?xml version=\"1.0\" encoding=\"UTF-8\"?>             <xs:nml xmlns:xs=\"http://www.netgear.com/protocol/transaction/NMLSchema-0.9\" xmlns=\"urn:netgear:nas:readynasd\" src=\"dpv_1368497621000\" dst=\"nas\">                <xs:transaction id=\"njl_id_1278\">                    <xs:custom id=\"njl_id_1277\" name=\"Halt\" resource-id=\"Shutdown\" resource-type=\"System\">                    <Shutdown halt=\"true\" fsck=\"false\"/>                </xs:custom>                </xs:transaction>            </xs:nml>");
+
+
+		}
+
+		function turnOn() {
+
+		}
+	</script>
+</body>
+</html>	
