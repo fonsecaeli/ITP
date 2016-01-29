@@ -1,0 +1,101 @@
+<object codebase="http://www.activexperts.com/files/network-component/cab/4.4/axnetwork32.cab" classid="CLSID:B52B14BA-244B-4006-86E0-2923CB69D881" style="visibility: hidden;"></object>
+
+<html>
+
+<head>
+<title>Wake On LAN</title>
+<style>
+   .clbody {
+   font-family:Verdana, Arial, Helvetica, sans-serif;
+   font-size:9pt;
+   font-weight:normal;
+}
+.clfooter {
+   font-family:Verdana;
+   font-size:7pt;
+   font-weight:normal;
+}
+h1, .h1 {
+   width:100%;
+   font-family:Verdana, Arial, Helvetica, sans-serif;
+   font-size:18px;
+   font-weight:bold;
+}
+hr, .hr {
+   color:#b0b0b0;
+}
+</style>
+
+<script language="JavaScript" type="text/javascript">
+<!--
+
+var objWOL = new ActiveXObject("AxNetwork.WOL");
+
+function getInfo()
+{
+   document.getElementById("fldAxNetworkInfo").innerHTML = "Build: " + objWOL.Build + "; Module: " + objWOL.Module   
+}  
+  
+function WakeUp()
+{
+  var objForm = document.forms["AXForm"];
+
+  var numLastError = 0;
+  var strLastError = "";
+
+  objWOL.Clear();
+  // objWOL.LogFile = "c:\wol.log";    //Optional: set LogFile property for troubleshooting purposes
+  objWOL.WakeUp( objForm.CTL_MAC.value );
+  
+  numLastError =  objWOL.LastError;
+  strLastError =  objWOL.GetErrorDescription( numLastError );  
+  
+  objForm.CTL_RESULTS.value = numLastError + " : " + strLastError;
+}
+	 
+//-->
+</script>
+
+</head>
+
+<body onload="getInfo()" class="ax_clbody">
+<h1>Wake On LAN</h1>
+<hr size="1">
+
+<form name="AXForm">
+<table class ="clbody" width="700">
+   <tr>
+       <td valign="top" width="200">Component:</td>
+       <td valign="top" width="500"><span id="fldAxNetworkInfo"></span></td>
+   </tr>
+
+   <tr>
+      <td valign="top">MAC Address:</td>
+       <td valign="top"><input style="width: 300px" type="text" name="CTL_MAC" value="00-10-4B-BA-7A-51"></td>
+   </tr>
+   <tr>
+      <td valign="top"> </td>
+      <td valign="top"><input size="25" type="button" onclick="WakeUp()" value="Wake Up!" name="CTL_SUBMIT" style="height: 23px; width: 300px"></td>
+   </tr>
+   <tr>
+      <td valign="top"> </td>
+      <td valign="top"> </td>
+   </tr>
+      <tr>
+      <td valign="top">Result code:</td>
+      <td valign="top"><input type="text" name="CTL_RESULTS" disabled="true" style="border:0px;width:500px;"></td>
+   </tr>
+</table>
+<br>
+<br>
+</form>
+
+<hr size="1">
+<div class="ax_clfooter">
+This sample is based on ActiveXperts Network Component, an <a target="_blank" href="http://www.activexperts.com">ActiveXperts Software</a> product.<br>
+<a href="../Index.htm">Click here</a> to return to the HTML sample menu page.<br>
+
+</div>
+
+</body>
+</html>
