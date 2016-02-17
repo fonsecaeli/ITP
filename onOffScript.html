@@ -1,0 +1,68 @@
+<!--
+wepage to be used as a remote to turn NAS on and off remotly
+ITP project 2/3/16
+Authors: Eli F, David S 
+Version: 1.0
+-->
+
+
+
+<!DOCTYPE htlm>
+<!--
+imports the ActiveX object used for Wol in the applicaiton
+-->
+<object data="http://www.activexperts.com/files/network-component/cab/4.4/axnetwork32.cab" style="visibility: hidden;">
+	<param name="classid" value="CLSID:B52B14BA-244B-4006-86E0-2923CB69D881">
+</object>
+
+
+<html>
+	<body>
+		<button onclick="turnOn()">On</button>
+		</br>
+		<button onclick="turnOff()">Off</button>
+
+		<script>
+			
+			//initalize stuff used for xmlhttp request 
+			var password = "xxxxxxxxx";
+			var userName = "admin";
+			var URL = "https://192.168.0.12/dbbroker";
+			var xhttp = new XMLHttpRequest();
+
+			xhttp.onreadystatechange = function() {
+	    			if (xhttp.readyState == 4 && xhttp.status == 200) {
+	       				// Action to be performed when the document is read if anything needs to be done
+	    			}
+	    			else {
+	    				//logs request info to the console
+	    				console.log("Request readystate: "+xhttp.readState+", Request status: "+xhttp.status);
+	    			}
+				};
+			
+			function turnOff() {
+				xhttp.open("GET", URL, true, userName, password);
+				xhttp.setRequestHeader("Content-Type:", "application/x-www-form-urlencoded");
+				xhttp.setRequestHeader("X-Requested-With:", "XMLHttpRequest");
+				//sends curl request to the NAS to power down
+				xhttp.send("<?xml version=\"1.0\" encoding=\"UTF-8\"?><xs:nml xmlns:xs=\"http://www.netgear.com/protocol/transaction/NMLSchema-0.9\" xmlns=\"urn:netgear:nas:readynasd\" src=\"dpv_1368497621000\" dst=\"nas\"><xs:transaction id=\"njl_id_1278\"><xs:custom id=\"njl_id_1277\" name=\"Halt\" resource-id=\"Shutdown\" resource-type=\"System\"><Shutdown halt=\"true\" fsck=\"false\"/></xs:custom></xs:transaction></xs:nml>");
+			}
+
+			//initalize stuff used for WoL
+			var objWOL = new ActiveXObject("AxNetwork.WOL"); //object used for WoL
+			var MAC = "44-94-FC-6E-0C-C8"; //MAC address of NAS
+
+			function turnOn() {
+				var numLastError = 0;
+  				var strLastError = "";
+				objWOL.Clear();
+
+				objWOL.WakeUp(MAC);
+
+				numLastError =  objWOL.LastError;
+  				strLastError =  objWOL.GetErrorDescription(numLastError);
+  				console.log("numLastError + " : " + strLastError");  
+			}
+		</script>
+	</body>
+</html>	
