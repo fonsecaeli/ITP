@@ -11,9 +11,9 @@ Version: 1.0
 <!--
 imports the ActiveX object used for Wol in the applicaiton
 -->
-<!-- <object data="http://www.activexperts.com/files/network-component/cab/4.4/axnetwork32.cab" style="visibility: hidden;">
+<object data="http://www.activexperts.com/files/network-component/cab/4.4/axnetwork32.cab" style="visibility: hidden;">
 	<param name="classid" value="CLSID:B52B14BA-244B-4006-86E0-2923CB69D881">
-</object> -->
+</object>
 
 
 <html>
