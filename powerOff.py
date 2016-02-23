@@ -4,7 +4,7 @@ from io import StringIO
 c = pycurl.Curl()
 url = "https://192.168.0.12/dbbroker"
 c.setopt(c.URL, url)
-c.setopt(pycurl.USERPWD, "%s:%s" % ("admin", "thepassword"))
+c.setopt(pycurl.USERPWD, "%s:%s" % ("admin", "Chateaulin!"))
 c.setopt(c.SSL_VERIFYPEER, 0) # That is you key line for this purpose!
 c.setopt(pycurl.SSL_VERIFYHOST,0)
 c.setopt(pycurl.HTTPHEADER, ["Content-Type: application/x-www-form-urlencoded;"])
