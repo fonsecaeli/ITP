@@ -20,7 +20,17 @@ imports the ActiveX object used for Wol in the applicaiton
 	<body>
 		<button onclick="turnOn()">On</button>
 		</br>
-		<button onclick="turnOff()">Off</button>
+		
+		<form method = "GET"> 
+			<input type="sumbit " value="Off"></input>
+		</form>
+
+		<?php
+			if ($_SERVER["REQUEST_METHOD"] == "GET") {
+				$command = escapeshellcmd('python powerOff.py');
+         		$powerOffOutput = shell_exec($command);
+        	}
+		?>
 
 		<script>
 			
