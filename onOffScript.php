@@ -27,24 +27,24 @@ imports the ActiveX object used for Wol in the applicaiton
 
 		<?php
 			if ($_SERVER["REQUEST_METHOD"] == "GET") {
-				$command = escapeshellcmd('python powerOff.py');
+				$command = escapeshellcmd('py powerOff.py');
          		$powerOffOutput = shell_exec($command);
         	}
 		?>
 
 		<script>
+//needs to be reworkd and tested
+			// function turnOn() {
+			// 	var numLastError = 0;
+  	// 			var strLastError = "";
+			// 	objWOL.Clear();
 
-			function turnOn() {
-				var numLastError = 0;
-  				var strLastError = "";
-				objWOL.Clear();
+			// 	objWOL.WakeUp(MAC);
 
-				objWOL.WakeUp(MAC);
-
-				numLastError =  objWOL.LastError;
-  				strLastError =  objWOL.GetErrorDescription(numLastError);
-  				console.log("numLastError + " : " + strLastError");  
-			}
+			// 	numLastError =  objWOL.LastError;
+  	// 			strLastError =  objWOL.GetErrorDescription(numLastError);
+  	// 			console.log("numLastError + " : " + strLastError");  
+			// }
 		</script>
 	</body>
 </html>
