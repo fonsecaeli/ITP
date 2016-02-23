@@ -28,8 +28,8 @@ imports the ActiveX object used for Wol in the applicaiton
 		<?php
 			if ($_SERVER["REQUEST_METHOD"] == "GET") {
 				$command = escapeshellcmd('py powerOff.py');
-         		$powerOffOutput = shell_exec($command);
-        	}
+         			$powerOffOutput = shell_exec($command);
+        		}
 		?>
 
 		<script>
