@@ -33,18 +33,21 @@ imports the ActiveX object used for Wol in the applicaiton
 		?>
 
 		<script>
-//needs to be reworkd and tested
-			// function turnOn() {
-			// 	var numLastError = 0;
-  	// 			var strLastError = "";
-			// 	objWOL.Clear();
+		//initalize stuff used for WoL
+			var objWOL = new ActiveXObject("AxNetwork.WOL"); //object used for WoL
+			var MAC = "44-94-FC-6E-0C-C8"; //MAC address of NAS
 
-			// 	objWOL.WakeUp(MAC);
+			function turnOn() {
+				var numLastError = 0;
+  				var strLastError = "";
+				objWOL.Clear();
 
-			// 	numLastError =  objWOL.LastError;
-  	// 			strLastError =  objWOL.GetErrorDescription(numLastError);
-  	// 			console.log("numLastError + " : " + strLastError");  
-			// }
+				objWOL.WakeUp(MAC);
+
+				numLastError =  objWOL.LastError;
+  				strLastError =  objWOL.GetErrorDescription(numLastError);
+  				console.log(numLastError + " : " + strLastError);  
+			}
 		</script>
 	</body>
 </html>
